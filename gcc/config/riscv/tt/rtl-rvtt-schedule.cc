@@ -211,7 +211,7 @@ public:
 
   virtual bool gate (function *) override
   {
-    return TARGET_RVTT;
+    return TARGET_RVTT_BH || TARGET_RVTT_WH;
   }
 
   virtual unsigned execute (function *) override
