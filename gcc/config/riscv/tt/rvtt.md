@@ -23,10 +23,10 @@
 
 ; & in spec means early clobber, written before inputs are used, cannot reuse input reg
 
-(define_mode_iterator RVTT_ANY_INT [SI HI QI])
-(define_mode_attr rvtt_any_int_mode_name [(SI "si") (HI "hi") (QI "qi")])
-(define_mode_attr rvtt_any_int_mode_mnem [(SI "w") (HI "h") (QI "b")])
-(define_mode_attr rvtt_any_uint_mode_load_mod [(SI "") (HI "u") (QI "u")])
+(define_mode_iterator RVTT_ANY_INT [SI HI QI DI])
+(define_mode_attr rvtt_any_int_mode_name [(SI "si") (HI "hi") (QI "qi") (DI "di")])
+(define_mode_attr rvtt_any_int_mode_mnem [(SI "w") (HI "h") (QI "b") (DI "d")])
+(define_mode_attr rvtt_any_uint_mode_load_mod [(SI "") (HI "u") (QI "u") (DI "d")])
 
 (define_c_enum "unspec" [
   UNSPEC_SYNTH_OPCODE
@@ -248,3 +248,13 @@ UNSPECV_TTINCRWC
                      (match_operand:SI    3 "const_int_operand"  "N01U")] UNSPECV_TTREPLAY)]
   "TARGET_RVTT"
   "TTREPLAY\t%0, %1, %2, %3")
+
+(define_insn "rvtt_rocc_noc_fence"
+  [(unspec_volatile [(const_int 0)] 0)]
+  "TARGET_RVTT"
+  "ttrocc.noc_fence")
+
+(define_insn "rvtt_rocc_dbg_postcode"
+  [(match_operand:DI 0 "const_int_operand" "")]
+  "TARGET_RVTT"
+  "ttrocc.dbg_postcode %0")
