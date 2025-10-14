@@ -212,6 +212,12 @@ int riscv_zvl_flags
 TargetVariable
 int riscv_tt_flags
 
+TargetVariable
+int riscv_xttrocc
+
+; FIXME: We need to implement this properly using the option instead
+Mask(XTTROCC) Var(riscv_xttrocc)
+
 Enum
 Name(isa_spec_class) Type(enum riscv_isa_spec_class)
 Supported ISA specs (for use with the -misa-spec= option):
