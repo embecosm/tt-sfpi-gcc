@@ -192,6 +192,8 @@ static const struct riscv_ext_version riscv_ext_version_table[] =
   {"xttwh", ISA_SPEC_CLASS_NONE, 1, 0},
   {"xttbh", ISA_SPEC_CLASS_NONE, 1, 0},
 
+  {"xttrocc", ISA_SPEC_CLASS_NONE, 1, 0},
+
   /* Terminate the list.  */
   {NULL, ISA_SPEC_CLASS_NONE, 0, 0}
 };
@@ -1145,6 +1147,8 @@ static const riscv_ext_flag_table_t riscv_ext_flag_table[] =
 
   {"xttwh", &gcc_options::x_riscv_tt_flags, MASK_TT_WH},
   {"xttbh", &gcc_options::x_riscv_tt_flags, MASK_TT_BH},
+
+  {"xttrocc", &gcc_options::x_riscv_xttrocc, MASK_XTTROCC},
   
   {NULL, NULL, 0}
 };

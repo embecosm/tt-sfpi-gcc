@@ -98,6 +98,9 @@ AVAIL (hard_float, TARGET_HARD_FLOAT)
 AVAIL (wormhole, TARGET_RVTT_WH)
 AVAIL (blackhole, TARGET_RVTT_BH)
 AVAIL (sfpu, (TARGET_RVTT_WH || TARGET_RVTT_BH))
+// FIXME: This should be `AVAIL (rocc, TARGET_XTTROCC)`
+// once the x extension support is added
+AVAIL (rocc, 1)
 
 /* Construct a riscv_builtin_description from the given arguments.
 
@@ -142,9 +145,11 @@ tree v64SF_type_node;
 /* Argument types.  */
 #define RISCV_ATYPE_VOID void_type_node
 #define RISCV_ATYPE_SI intSI_type_node
+#define RISCV_ATYPE_DI intDI_type_node
 #define RISCV_ATYPE_HI intHI_type_node
 #define RISCV_ATYPE_QI intQI_type_node
 #define RISCV_ATYPE_USI unsigned_intSI_type_node
+#define RISCV_ATYPE_UDI unsigned_intDI_type_node
 #define RISCV_ATYPE_UHI unsigned_intHI_type_node
 #define RISCV_ATYPE_UQI unsigned_intQI_type_node
 #define RISCV_ATYPE_V64SF v64SF_type_node
@@ -171,12 +176,15 @@ tree v64SF_type_node;
 #define RISCV_FTYPE_ATYPES8(A, B, C, D, E, F, G, H, I) \
   RISCV_ATYPE_##A, RISCV_ATYPE_##B, RISCV_ATYPE_##C, RISCV_ATYPE_##D, RISCV_ATYPE_##E, RISCV_ATYPE_##F, RISCV_ATYPE_##G, RISCV_ATYPE_##H, RISCV_ATYPE_##I
 
-static const int first_sfpu_builtin = 2;
+static const int first_sfpu_builtin = 4;
 
 static const struct riscv_builtin_description riscv_builtins[] = {
   DIRECT_BUILTIN (frflags, RISCV_USI_FTYPE, hard_float),
   DIRECT_NO_TARGET_BUILTIN (fsflags, RISCV_VOID_FTYPE_USI, hard_float),
+
   // If you add builtins here, update the start of the sfpu builtins above
+
+  #include "ttrocc.def"
 
   /* Tenstorrent SFPU builtins */
 #define RVTT_BUILTIN(op, fmt, fl, dap, mp, sched, nip, nim, nis) DIRECT_RVTT_BUILTIN(op, fmt, sfpu),

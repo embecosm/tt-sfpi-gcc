@@ -2871,6 +2871,7 @@
 (include "pic.md")
 (include "generic.md")
 (include "sifive-7.md")
+(include "ttrocc.md")
 
 (include "tt/rvtt.md")
 (include "tt/rvtt-wh.md")
