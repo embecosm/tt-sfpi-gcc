@@ -176,7 +176,7 @@ tree v64SF_type_node;
 #define RISCV_FTYPE_ATYPES8(A, B, C, D, E, F, G, H, I) \
   RISCV_ATYPE_##A, RISCV_ATYPE_##B, RISCV_ATYPE_##C, RISCV_ATYPE_##D, RISCV_ATYPE_##E, RISCV_ATYPE_##F, RISCV_ATYPE_##G, RISCV_ATYPE_##H, RISCV_ATYPE_##I
 
-static const int first_sfpu_builtin = 61;
+static const int first_sfpu_builtin = 65;
 
 static const struct riscv_builtin_description riscv_builtins[] = {
   DIRECT_BUILTIN (frflags, RISCV_USI_FTYPE, hard_float),
